@@ -2,6 +2,8 @@
 #include <string>
 #include <list>
 #include <vector>
+#include <fstream>
+
 
 using namespace std;
 
@@ -50,14 +52,19 @@ bool Parent(string X, string Y, list<string> *Names){
 return false;
 }
 int main(){
-	list<string> l;	
-	string Names = "Екатерина Лиана\n\
-Фёдор Амина\n\
-Давид Иван\n\
-Макар Максим\n\
-Агния Артём\n";
+	setlocale(LC_ALL, "");
+	list<string> l;
 	
-	add2List(Names, &l);
-	cout << Parent("Фёдор", "Антон", &l) << endl;
+	string Names;
+	ifstream f("C:\\Users\\kiril\\Data_Struct_labs\\Lab1\\Labs\\Names.txt");
+
+	if(f.is_open()){
+		while(getline(f, Names)){
+			Names += '\n';
+			add2List(Names, &l);
+		}
+	}
+	cout << Parent("�����", "����", &l) << endl;
+	cout << Parent("ϸ��", "����", &l) << endl;
 	return 0; 
 }
